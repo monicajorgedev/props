@@ -2,8 +2,10 @@ import { useState } from "react"
 
 const AddTaskForm = ({addTask}) => {
     const [value, setValue] = useState('')
+    
     const handleSubmit = (e)=> {
         e.preventDefault()
+        if(!value.trim()) return
         addTask(value)
         setValue('')
     }

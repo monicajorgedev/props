@@ -10,8 +10,11 @@ const App = () => {
     { id: 3, text: 'Hacer ejercicio', completed: false }
   ]);
 
+  const [maxId, setmaxId] = useState(tasks.length + 1)
+
   const addTask = (text) => {
-    setTasks([...tasks, {id: tasks.length+1, text: text, completed: false}])
+    setTasks([...tasks, {id: setmaxId(maxId + 1), text: text, completed: false}])
+    
   }
 
   const deleteTask = (id)=> {
@@ -26,9 +29,13 @@ const App = () => {
     <>
       <h1>Lista de tareas</h1>
       <AddTaskForm addTask={addTask}/>
+      <ul>
       {tasks.map((element)=> (
         <Task {...element} deleteTask={deleteTask} maskAsCompleted={maskAsCompleted} key={element.id}/>
-      ))}
+      
+      ))
+      }
+      </ul>
     </>
   );
 };
